@@ -9,6 +9,8 @@
   "author": "Ole Petersen",
   "license": "ISC",
   "dependencies": {
-    "serialport": "^9.0.7"
+    "express": "^4.17.1",
+    "serialport": "^9.0.7",
+    "websocket": "^1.0.33"
   }
 }

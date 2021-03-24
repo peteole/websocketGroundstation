@@ -15,9 +15,9 @@ app.get("/devices", (req, res) => {
         res.send("error: " + reason);
     });
 });
-app.get("/open-port-request", (req, res) => {
-    const path = req.params.path;
-    const baud = req.params.baud || 9600;
+app.get("/open-port-request*", (req, res) => {
+    const path = req.query.path
+    const baud = parseInt(req.query.baud) || 9600;
     const port = new SerialPort(path, {
         baudRate: baud,
         autoOpen: true
@@ -39,13 +39,15 @@ app.get("/open-port-request", (req, res) => {
         port.on("data", data => {
             connection.send(data);
         });
-        console.log(con);
+        console.log(connection);
+        connection.send("Hallo Welt");
     });
     port.on('open', data => {
         res.send("success");
     });
     port.on('error', data => {
         res.send("error: " + data);
+        socket.closeAllConnections()
     });
 });
 

@@ -1,0 +1,14 @@
+{
+  "name": "websocketgroundstation",
+  "version": "1.0.0",
+  "description": "Websocket groundstation for telemetry ui which forwards usb data to the web UI",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Ole Petersen",
+  "license": "ISC",
+  "dependencies": {
+    "serialport": "^9.0.7"
+  }
+}

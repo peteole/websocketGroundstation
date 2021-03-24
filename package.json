@@ -9,6 +9,7 @@
   "author": "Ole Petersen",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "serialport": "^9.0.7",
     "websocket": "^1.0.33"

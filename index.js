@@ -1,10 +1,12 @@
 const http = require("http");
 const express = require("express");
+const cors = require("cors")
 
 const WebSocket = require("websocket").server;
 const SerialPort = require('serialport');
 
 const app = express();
+app.use(cors());
 const server = http.createServer(app);
 app.get("/devices", (req, res) => {
     SerialPort.list().then((serialPorts) => {
@@ -46,3 +48,5 @@ app.get("/open-port-request", (req, res) => {
         res.send("error: " + data);
     });
 });
+
+server.listen(9091);

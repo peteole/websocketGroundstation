@@ -3,14 +3,17 @@ const express = require("express");
 
 const WebSocket = require("websocket").server;
 const SerialPort = require('serialport');
-const { prototype } = require("stream");
 
 const app = express();
 const server = http.createServer(app);
 app.get("/devices", (req, res) => {
-    res.send("No devices availabe");
+    SerialPort.list().then((serialPorts) => {
+        res.send(JSON.stringify(serialPorts));
+    }).catch(reason => {
+        res.send("error: " + reason);
+    });
 });
-app.get("/open-request", (req, res) => {
+app.get("/open-port-request", (req, res) => {
     const path = req.params.path;
     const baud = req.params.baud || 9600;
     const port = new SerialPort(path, {
@@ -18,7 +21,9 @@ app.get("/open-request", (req, res) => {
         autoOpen: true
     });
     const socket = new WebSocket({
-        httpServer: server
+        httpServer: server,
+        path: "/device" + path
+
     });
     socket.on("request", req => {
         const connection = req.accept();

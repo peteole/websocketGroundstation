@@ -30,8 +30,11 @@ app.get("/open-port-request*", (req, res) => {
     socket.on("request", req => {
         const connection = req.accept();
         connection.on("message", data => {
-            if (port.isOpen)
+            try {
                 port.write(data.binaryData);
+            } catch (error) {
+
+            }
         });
         connection.on("close", data => {
             port.close();
@@ -46,7 +49,11 @@ app.get("/open-port-request*", (req, res) => {
         res.send("success");
     });
     port.on('error', data => {
-        res.send("error: " + data);
+        try {
+            res.send("error: " + data);
+        } catch (error) {
+
+        }
         socket.closeAllConnections()
     });
 });

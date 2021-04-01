@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "../telemetry-ui"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../telemetryProtocol"
+		},
+		{
+			"name": "telemetryProtocolDemo",
+			"path": "../../PlatformIO/Projects/telemetryProtocolDemo"
+		},
+		{
+			"path": "../telemetryProtocolClient"
+		}
+	],
+	"settings": {}
+}

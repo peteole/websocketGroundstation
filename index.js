@@ -1,8 +1,8 @@
 const http = require("http");
 const express = require("express");
-const cors = require("cors")
+const cors = require("cors");
 
-const WebSocket = require("websocket").server;
+const WebSocket = require("ws").Server;
 const SerialPort = require('serialport');
 
 const app = express();
@@ -15,6 +15,7 @@ app.get("/devices", (req, res) => {
         res.send("error: " + reason);
     });
 });
+const ports = new Set()
 app.get("/open-port-request*", (req, res) => {
     const path = req.query.path
     const baud = parseInt(req.query.baud) || 9600;
@@ -22,28 +23,29 @@ app.get("/open-port-request*", (req, res) => {
         baudRate: baud,
         autoOpen: true
     });
+    ports.add(port)
     const socket = new WebSocket({
-        httpServer: server,
-        path: "/device" + path
+        server: server,
+        path: "/device" + path,
 
     });
-    socket.on("request", req => {
-        const connection = req.accept();
-        connection.on("message", data => {
+    socket.on("connection", webSocket => {
+        socket.on("message", data => {
             try {
                 port.write(data.binaryData);
             } catch (error) {
 
             }
         });
-        connection.on("close", data => {
-            port.close();
-        });
+        webSocket.onclose = event => {
+            if (port.isOpen)
+                port.close();
+            ports.delete(port);
+        }
         port.on("data", data => {
-            connection.send(data);
+            webSocket.send(data);
         });
-        console.log(connection);
-        connection.send("Hallo Welt");
+        webSocket.send("Hallo Welt");
     });
     port.on('open', data => {
         res.send("success");
@@ -54,7 +56,13 @@ app.get("/open-port-request*", (req, res) => {
         } catch (error) {
 
         }
-        socket.closeAllConnections()
+        socket.close();
+        if (port.isOpen)
+            port.close();
+        ports.delete(port);
+    });
+    port.on("close", data => {
+        socket.close();
     });
 });
 

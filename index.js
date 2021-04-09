@@ -30,9 +30,9 @@ app.get("/open-port-request*", (req, res) => {
 
     });
     socket.on("connection", webSocket => {
-        socket.on("message", data => {
+        webSocket.on("message", data => {
             try {
-                port.write(data.binaryData);
+                port.write(data);
             } catch (error) {
 
             }

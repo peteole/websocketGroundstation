@@ -15,6 +15,10 @@
 		},
 		{
 			"path": "../telemetryProtocolClient"
+		},
+		{
+			"name": "telemtryFirmware",
+			"path": "../../PlatformIO/Projects/telemtryFirmware"
 		}
 	],
 	"settings": {}

@@ -21,5 +21,13 @@
 			"path": "../../PlatformIO/Projects/telemtryFirmware"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"files.associations": {
+			"*.def": "cpp",
+			"*.tcc": "cpp",
+			"cmath": "cpp",
+			"complex": "cpp",
+			"random": "cpp"
+		}
+	}
 }

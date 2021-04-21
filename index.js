@@ -52,6 +52,7 @@ app.get("/open-port-request*", (req, res) => {
     });
     port.on('error', data => {
         try {
+            console.log(data);
             res.send("error: " + data);
         } catch (error) {
 

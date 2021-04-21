@@ -10,15 +10,15 @@
 			"path": "../telemetryProtocol"
 		},
 		{
-			"name": "telemetryProtocolDemo",
-			"path": "../../PlatformIO/Projects/telemetryProtocolDemo"
-		},
-		{
 			"path": "../telemetryProtocolClient"
 		},
 		{
 			"name": "telemtryFirmware",
 			"path": "../../PlatformIO/Projects/telemtryFirmware"
+		},
+		{
+			"name": "groundStation",
+			"path": "../../PlatformIO/Projects/groundStation"
 		}
 	],
 	"settings": {

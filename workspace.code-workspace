@@ -19,6 +19,10 @@
 		{
 			"name": "groundStation",
 			"path": "../../PlatformIO/Projects/groundStation"
+		},
+		{
+			"name": "stmFirmware",
+			"path": "../../PlatformIO/Projects/stmFirmware"
 		}
 	],
 	"settings": {

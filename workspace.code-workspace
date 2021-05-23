@@ -21,8 +21,8 @@
 			"path": "../../PlatformIO/Projects/groundStation"
 		},
 		{
-			"name": "stmFirmware",
-			"path": "../../PlatformIO/Projects/stmFirmware"
+			"name": "i2c-scanner",
+			"path": "../../PlatformIO/Projects/i2c-scanner"
 		}
 	],
 	"settings": {

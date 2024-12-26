@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 
 const WebSocket = require("ws").Server;
-const SerialPort = require('serialport');
+const {SerialPort} = require('serialport');
 
 const app = express();
 app.use(cors());
@@ -19,7 +19,8 @@ const ports = new Set()
 app.get("/open-port-request*", (req, res) => {
     const path = req.query.path
     const baud = parseInt(req.query.baud) || 9600;
-    const port = new SerialPort(path, {
+    const port = new SerialPort({
+        path: path,
         baudRate: baud,
         autoOpen: true
     });
